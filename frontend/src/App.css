@@ -1,0 +1,15 @@
+#dashboard-container{
+    width: 100%;
+}
+
+.ui.container{
+    border: 1px solid rgba(34, 36, 38, .15) !important;
+    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15) !important;
+    margin: 20px !important;
+    padding: 40px !important;
+}
+
+.quill{
+    height: 40vh;
+    margin-bottom: 80px;
+}

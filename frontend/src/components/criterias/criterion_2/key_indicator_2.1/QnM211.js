@@ -1,0 +1,1 @@
+import "./QnM2.1.css";

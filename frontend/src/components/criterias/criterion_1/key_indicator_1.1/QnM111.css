@@ -1,0 +1,18 @@
+#qnm-1-1-1{
+
+    padding: 20px;
+   
+}
+#sub-header{
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+#dashboard-container{
+    display: flex;
+}
+
+#key-indicator-header{
+    text-align: center;
+    padding: 20px;
+}

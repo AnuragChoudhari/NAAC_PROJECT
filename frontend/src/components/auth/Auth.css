@@ -1,0 +1,66 @@
+.login-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+}
+
+/* Remove spinners */
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+#login-form{
+    font-size: 1.5rem !important;
+    line-height: 2;
+}
+
+#login-form-header, #signup-form-header{
+    padding: 20px;
+}
+
+#login-form a{
+    font-size: 16px !important;
+}
+
+
+
+#signup-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    
+    align-items: center;
+}
+
+
+#signup-form-form{
+    font-size: 1rem;
+    height: 50vh;
+}
+
+#loading-gif{
+    display: flex;
+    position: absolute;
+    z-index: 10;
+    mix-blend-mode: darken;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+}
