@@ -4,3 +4,37 @@
     height:15vh;
     width: 100%;
 }
+
+#menu-box{
+    margin: 0;
+    padding: 30px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+
+}
+
+#right-side-menu-box{
+    margin-left: auto;
+}
+
+#right-side-menu-box h3{
+    padding: 20px;
+    margin: auto;
+}
+
+/* 
+#menu-box a{
+    padding: 10px;
+    border: 1px solid green;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#right-side-menu-box{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */

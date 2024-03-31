@@ -7,6 +7,22 @@
     flex-direction: column;
 }
 
+#notifications{
+    font-size: 1.5rem;
+}
+
+#main-signup-container{
+    display: flex;
+}
+
+#login-main-container{
+    background: rgb(255, 255, 255);
+}
+
+#signup-form{
+    display: flex;
+}
+
 /* Remove spinners */
 
 
@@ -63,4 +79,59 @@ input[type=number] {
     justify-content: center;
     align-content: center;
     width: 100%;
+}
+
+#login-main-container{
+    display: flex;
+}
+
+#right-section{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#right-sub-section{
+    background: url("../assets/casey-olsen-NlFyPKxXORo-unsplash.jpg") no-repeat center center/cover;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#right-sub-section::after{
+    content: "";
+    display: flex;
+   
+    font-size: 4rem;
+    color: white;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: rgba(4, 4, 4, 0.5);
+    
+}
+
+#right-sub-section-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 10;
+  
+    color: white;
+    height: auto;
+}
+
+#right-sub-section-title h1{
+    font-size: 5rem;
+    backdrop-filter: brightness(0.5) blur(6px);
+    padding: 100px;
+
+    transform-style: preserve-3d;
+    font-weight: 100;
+    /* transform: perspective(1000px) rotateY(-25deg) ; */
 }

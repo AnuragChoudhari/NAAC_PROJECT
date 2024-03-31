@@ -71,6 +71,20 @@ app.post("/checkUserLogin", (req, res) => {
   });
 });
 
+app.get("/getFacultyDetails", (req,res)=>{
+    const sql = "SELECT faculty_details.*, clg_departments.dept_name FROM faculty_details INNER JOIN clg_departments ON faculty_details.faculty_department_id = clg_departments.dept_id";
+    connection.query(sql,(err,result)=>{
+        if(err){
+            res.json({
+                msg: "Cannot get details of faculty"
+            }).status(500);
+        }else{
+            res.json(result);
+        }
+
+    })
+})
+
 app.post("/createFacultyProfile", (req, res) => {
   // const data = req.body;
   // console.log(data);
