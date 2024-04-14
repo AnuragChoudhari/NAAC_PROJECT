@@ -19,31 +19,78 @@ function QnM111() {
   const [filesData, setFilesData] = useState([]);
 
   const [errmsg, setErrMsg] = useState("");
+
+  const formData = new FormData();
+
   const successMsg = () => toast.success("Record uploaded successfully!");
   const errorMsg = () => toast.error("Error in uploading data ", errmsg);
-  const postData = {
-    filled_desc: value,
-    file_path: files,
-  };
+ 
+  const fdata = localStorage.getItem('fid');
+ 
+  const dataObj = JSON.parse(fdata);
 
-  const uploadData = async (e) => {
-    e.preventDefault();
-    if (value != "" && files != "") {
-      const data = axios
-        .post("http://localhost:8000/uploadData", postData)
-        .then((response) => {
-          console.log("Response", response.data);
-          successMsg();
-        })
-        .catch((error) => {
-          setErrMsg(errmsg);
-          console.log("Error: ", error);
-          errorMsg();
-        });
-    } else {
-      alert("Both fields are mandatory");
-    }
-  };
+//   const postData = {
+//     filled_desc: value,
+//     file_path: JSON.stringify(filesData),
+//     faculty_id: dataObj.data[0].faculty_id
+//   };
+//   // Append postData properties to formData
+// Object.keys(postData).forEach(key => {
+//     formData.append(key, postData[key]);
+// });
+
+//   const uploadData = async (e) => {
+
+
+    
+//     e.preventDefault();
+//     if (value != "" && filesData != "") {
+//       const data = axios
+//         .post("http://localhost:8000/uploadData", postData)
+//         .then((response) => {
+//           console.log("Response", response.data);
+//           successMsg();
+//         })
+//         .catch((error) => {
+//           setErrMsg(errmsg);
+//           console.log("Error: ", error);
+//           errorMsg();
+//         });
+//       }else{
+//         alert("Both fields are needed");
+//       }
+//   };
+
+const uploadData = async (e) => {
+  e.preventDefault();
+  if (value !== "" && filesData.length > 0) {
+    // Construct FormData object
+    const formData = new FormData();
+    formData.append("filled_desc", value);
+    formData.append("faculty_id", dataObj.data[0].faculty_id);
+    
+    // Append files to FormData object
+    filesData.forEach(file => {
+      formData.append("file", file);
+    });
+
+    // Send POST request with FormData
+    const data = axios.post("http://localhost:8000/uploadData", formData)
+      .then((response) => {
+        console.log("Response", response.data);
+        successMsg();
+      })
+      .catch((error) => {
+        setErrMsg(errmsg);
+        console.log("Error: ", error);
+        errorMsg();
+      });
+  } else {
+    alert("Both description and files are required.");
+  }
+};
+
+
 
   const handleDelete = (e, i) =>{
     e.preventDefault();

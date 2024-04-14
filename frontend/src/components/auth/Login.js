@@ -11,8 +11,9 @@ function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loadingStatus, setLoadingStatus] = useState(false);
 
+
   const successMsg = () => toast.success("Logged in successfully!");
-  const errorMsg = () => toast.error("Error");
+  const errorMsg = () => toast.error("Error: Username or password incorrect");
 
   const handleLogin = async (e) => {
     setLoadingStatus(true);
@@ -64,7 +65,7 @@ function Login() {
           <h1 className="ui header" id="login-form-header">
             Faculty Login
           </h1>
-          <ToastContainer />
+          <ToastContainer position="top-center"/>
           <form class="ui form" id="login-form">
             <div class="required field" id="user-email">
               <label>Email</label>

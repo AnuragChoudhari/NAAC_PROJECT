@@ -91,6 +91,7 @@ input[type=number] {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 0px 20px 0px #020202
 }
 
 #right-sub-section{
