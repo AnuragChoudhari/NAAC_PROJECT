@@ -1,12 +1,30 @@
 const bodyParser = require("body-parser");
 const express = require("express");
+const fs = require('fs');
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
 const multer = require('multer');
-const upload  = multer({dest: "uploads/"});
+
+const storage = multer.diskStorage({
+  destination: function(req,file,cb){
+    const facultyId = req.body.faculty_id;
+    // Define the destination folder path with the faculty ID
+    const destinationPath = `./uploads/${facultyId}`;
+    // Create the folder if it doesn't exist
+    fs.mkdirSync(destinationPath, { recursive: true });
+    // Set the destination folder
+    cb(null, destinationPath);
+  },
+  filename: function(req,file,cb){
+    return cb(null, `${file.originalname}`);
+  }
+})
+
+const upload = multer({storage: storage});
 
 app.use(bodyParser.json());
+app.use(express.urlencoded({extended: false}));
 app.use(cors());
 
 
@@ -56,35 +74,32 @@ app.get("/getDepartmentsList", (req, res) => {
   });
 });
 
-app.post("/uploadData", upload.array("file"), (req, res) => {
-  // Access form data
-  const filled_desc = req.body.filled_desc;
-  const faculty_id = req.body.faculty_id;
 
-  // Access files
-  const files = req.files;
+app.post("/uploadData/qnm1_1_1", upload.array("files"), (req, res) => {
+     const {faculty_id, m_desc, m_files} = req.body;
 
-  // Handle files
-  if (files) {
-    files.forEach(file => {
-      // Access file details
-      const originalname = file.originalname;
-      const buffer = file.buffer; // or file.path depending on how you want to handle the file
-
-      // Process file as needed, e.g., save to disk or database
-      // For demonstration purposes, I'm just logging the details
-      console.log("File name:", originalname);
-      console.log("File buffer:", buffer);
+     const sql = 'INSERT INTO qnm1_1_1 (m_desc, m_files, faculty_id) VALUES (?,?,?)';
+     connection.query(sql, [m_desc, m_files, faculty_id], (err, result) => {
+      if (err) {
+        console.error("Error retriving the data: ", err);
+        res.status(500).send("Error retriving the data");
+      } else {
+        if (result.length != 0) {
+          res.json({
+            data: result,
+          });
+        } else {
+          res.status(404).send("Data does not exist");
+        }
+      }
     });
-  }
 
-  // Log other form data
-  console.log("Filled description:", filled_desc);
-  console.log("Faculty ID:", faculty_id);
-
-  // Respond with success message
-  res.json({ message: "Data uploaded successfully!" });
 });
+
+app.post("/getUploadDetails/${id}", (req,res)=>{
+  
+})
+
 
 app.post("/checkUserLogin", (req, res) => {
   const { user_email, user_pwd } = req.body;
@@ -110,6 +125,7 @@ app.get("/getFacultyFilledDetails",(req,res)=>{
   
 })
 
+//  Get all users 
 
 app.get("/getFacultyDetails", (req,res)=>{
     const sql = "SELECT faculty_details.*, clg_departments.dept_name FROM faculty_details INNER JOIN clg_departments ON faculty_details.faculty_department_id = clg_departments.dept_id";
@@ -124,6 +140,12 @@ app.get("/getFacultyDetails", (req,res)=>{
 
     })
 })
+
+// Filter api
+
+// app.get("/getFacultyDetails/filter/:filterId", (req,res)=>{
+//           const sql  = "SELECT faculty_details.*"
+// })
 
 
 app.post("/getFacultySessionDetails", (req,res)=>{
@@ -190,6 +212,8 @@ app.post("/setFacultyCriterias", async (req,res)=>{
         SET qnm1_1_1 = ?, qnm1_2_1 = ?, qnm1_2_2 = ?, qnm1_3_1 = ?, qnm1_3_2 = ?, qnm1_4_1 = ?
         WHERE faculty_id = ?
       `;
+      
+    
 
       // Extract the checkbox values from the checkboxes array
       const values = checkboxes.map(checkbox => checkbox.checked);
@@ -199,6 +223,9 @@ app.post("/setFacultyCriterias", async (req,res)=>{
 
       // Execute the query with the appropriate parameters
       await connection.query(updateQuery, values);
+
+   
+      // await connection.query(insertQuery,[faculty.checkboxes,facultyId]);
     }
 
     res.status(200).send("Data updated successfully");

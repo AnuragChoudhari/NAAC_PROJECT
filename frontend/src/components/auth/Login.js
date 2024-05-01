@@ -4,6 +4,7 @@ import loadingGif from "../assets/Loading_2.gif";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import uniImage from "../assets/casey-olsen-NlFyPKxXORo-unsplash.jpg";
+import { Grid } from "@mui/material";
 
 function Login() {
   const [userEmail, setUserEmail] = useState("");
@@ -37,7 +38,7 @@ function Login() {
       console.log(response.data);
       localStorage.setItem("fid", JSON.stringify(response.data));
       successMsg();
-      window.location.href = "http://localhost:3000/dashboard";
+      window.location.href = "http://localhost:3000/";
     } catch (error) {
       console.log("Error in logging in user", error);
       errorMsg();
@@ -75,6 +76,7 @@ function Login() {
                 placeholder="Email"
                 onChange={(e) => setUserEmail(e.target.value)}
               />
+            
             </div>
             <div class="required field">
               <label>Password</label>

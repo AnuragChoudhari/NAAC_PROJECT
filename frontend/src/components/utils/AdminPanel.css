@@ -1,0 +1,10 @@
+#filters{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+#filter-text{
+    margin-right: 20px;
+}

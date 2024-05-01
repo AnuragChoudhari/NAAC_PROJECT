@@ -19,6 +19,13 @@ import Help from "./components/help/Help";
 import Default from "./components/Default";
 import DashboardMain from "./components/dashboard/DashboardMain";
 import PageNotFound from "./components/PageNotFound";
+import HomePage from "./components/pages/HomePage";
+import SignUpM from "./components/auth/SignUpM";
+import LoginM from "./components/auth/LoginM";
+import DashboardTPL from "./components/pages/DashboardTPL";
+import AdminDashboard from "./components/utils/AdminDashboard";
+import DefaultCriteria from "./components/pages/DefaultCriteria";
+
 
 function App() {
   const fdetails = localStorage.getItem("fid");
@@ -29,12 +36,36 @@ function App() {
         <Routes>
 
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
-
+        
           {fdetails != null ? (
             <>
+                 <Route
+                path="/"
+                element={<HomePage></HomePage>}
+              ></Route>
+                <Route
+                path="/home"
+                element={<HomePage></HomePage>}
+              ></Route>
+
+                 <Route
+                path="/admin-dashboard"
+                element={<AdminDashboard></AdminDashboard>}
+              ></Route>
+               
               <Route
-                path="/dashboard"
+                path="/admin-panel"
                 element={<DashboardMain></DashboardMain>}
+              ></Route>
+
+              <Route
+              path="/dashboard"
+              element={<DashboardTPL></DashboardTPL>}
+              ></Route>
+
+                <Route
+                path="/criterias"
+                element={<DefaultCriteria></DefaultCriteria>}
               ></Route>
 
               <Route
@@ -93,12 +124,17 @@ function App() {
               ></Route>
 
               <Route path="/help" element={<Help></Help>}></Route>
+
+
+            
             </>
           ) : (
             <>
-                   <Route path="/login" element={<Login></Login>}></Route>
-          <Route path="/signup" element={<Signup></Signup>}></Route>
-          <Route path="*" element={<Login></Login>}></Route>
+                   {/* <Route path="/login" element={<Login></Login>}></Route> */}
+                   <Route path="/login" element={<LoginM></LoginM>}></Route>
+          {/* <Route path="/signup" element={<Signup></Signup>}></Route> */}
+            <Route path="/signup" element={<SignUpM></SignUpM>}></Route>
+          <Route path="/" element={<LoginM></LoginM>}></Route>  
             </>
           )}
         </Routes>

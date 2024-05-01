@@ -107,6 +107,8 @@ function Signup() {
             id="signup-form-form"
             onSubmit={createFacultyProfile}
           >
+            
+            
             <div class="field" id="faculty-name">
               <label>Faculty Name</label>
               <input
@@ -130,6 +132,8 @@ function Signup() {
                 required
               />
             </div>
+
+
 
             <div class="field">
               <label>Contact No</label>
