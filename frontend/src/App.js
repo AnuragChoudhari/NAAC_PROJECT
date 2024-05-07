@@ -25,6 +25,7 @@ import LoginM from "./components/auth/LoginM";
 import DashboardTPL from "./components/pages/DashboardTPL";
 import AdminDashboard from "./components/utils/AdminDashboard";
 import DefaultCriteria from "./components/pages/DefaultCriteria";
+import NaacHome from "./components/pages/NaacHome";
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-        <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+        {/* <Route path="*" element={<PageNotFound></PageNotFound>}></Route> */}
         
           {fdetails != null ? (
             <>
@@ -123,15 +124,16 @@ function App() {
                 element={<QnM263></QnM263>}
               ></Route>
 
-              <Route path="/help" element={<Help></Help>}></Route>
-
+              <Route path="*" element={<HomePage></HomePage>}></Route>
 
             
             </>
           ) : (
             <>
                    {/* <Route path="/login" element={<Login></Login>}></Route> */}
+                   <Route path="/home" element={<NaacHome></NaacHome>}></Route>
                    <Route path="/login" element={<LoginM></LoginM>}></Route>
+                   <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
           {/* <Route path="/signup" element={<Signup></Signup>}></Route> */}
             <Route path="/signup" element={<SignUpM></SignUpM>}></Route>
           <Route path="/" element={<LoginM></LoginM>}></Route>  

@@ -1,0 +1,22 @@
+.notification-fill-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#send-btn{
+    margin-top: 2vh;
+}
+
+#notification-send-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#selected-option{
+    margin-left: 20px;
+    font-size: 1rem;
+}
+

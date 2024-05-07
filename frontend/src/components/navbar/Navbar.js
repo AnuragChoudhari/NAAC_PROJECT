@@ -13,19 +13,48 @@ import PersonIcon from "@mui/icons-material/Person";
 import TemporaryDrawer from "../material_ui_components/TemporaryDrawer";
 import MenuIcon from '@mui/icons-material/Menu';
 import LoadingProgress from "../utils/LoadingProgress";
+import axios from "axios";
 
 
 function Navbar() {
   const fdata = localStorage.getItem("fid");
   const [notificationCount, setNotificationCount] = useState(2);
   const[loadingStatus, setLoadingStatus] = useState(false);
+  const[notificationMsgs, setNotificationMsgs] = useState([]);
   const dataObj = JSON.parse(fdata);
 
   const [sessionName, setSessionName] = useState("");
 
+  // Notifications
+
+  const getNotificationCount = async ()=>{
+    const faculty_data = {
+      faculty_id: dataObj.data[0].faculty_id
+    }
+    
+      const notification_count = await axios.post("http://localhost:8000/api/get-notification-count",faculty_data);
+    
+    // console.log(notification_count.data[0].total_count);
+    setNotificationCount(notification_count.data[0].total_count);
+  }
+
+  const getNotifications = async ()=>{
+    const faculty_data = {
+      faculty_id: dataObj.data[0].faculty_id
+    }
+    const notifications = await axios.post("http://localhost:8000/api/get-notification-msgs",faculty_data);
+
+    console.log(notifications);
+    setNotificationMsgs(notifications);
+  }
+
   useEffect(() => {
     setSessionName(dataObj.data[0].faculty_name);
-  }, [sessionName]);
+
+      getNotificationCount();
+
+
+  }, []);
 
   const location = useLocation();
   const handleLogout = () => {
@@ -66,12 +95,14 @@ function Navbar() {
       <div class="ui menu" id="menu-box">
         <TemporaryDrawer></TemporaryDrawer>
 
-        <Typography variant="h6" component="h2" mx={2}>
+        <div className="ui  header" id="college-details">
           Karmveer Bhaurao Patil College Of Engineering, Satara
-        </Typography>
+        </div>
 
         <div className="item" id="right-side-menu-box">
-          <BasicPopover notificationCount={notificationCount}></BasicPopover>
+          <BasicPopover notificationCount={notificationCount}>
+          
+          </BasicPopover>
           <h3>
             <i className="ui user icon"></i>
             {sessionName}

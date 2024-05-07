@@ -174,11 +174,9 @@ function AdminPanel() {
                   <th rowSpan={2}>Faculty ID</th>
                   <th rowSpan={2}>Faculty Name</th>
                   <th rowSpan={2}>Faculty Department</th>
-                  <th rowSpan={2}>Faculty Email</th>
-                  <th rowSpan={2}>Faculty Contact No</th>
-                  <th rowSpan={2}>Date Of Faculty Registration</th>
+          
                   <th className="ui centered small header" colSpan={10}>
-                    Assign criterion filling to each faculty based on metrics.
+                    Metrics Assignment
                   </th>
                 </tr>
                 <tr>
@@ -197,9 +195,7 @@ function AdminPanel() {
                       <td>{f.faculty_id}</td>
                       <td>{f.faculty_name}</td>
                       <td>{f.dept_name}</td>
-                      <td>{f.faculty_email}</td>
-                      <td>{f.faculty_contact}</td>
-                      <td>{f.date_of_faculty_registration}</td>
+                    
                       <td>
                         <div class="ui toggle checkbox">
                           <input

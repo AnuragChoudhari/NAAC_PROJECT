@@ -1,0 +1,9 @@
+#faculty-management-container{
+    height: auto;
+    display: flex;
+}
+
+#side-menu{
+    width: 15%;
+    margin: 0;
+}

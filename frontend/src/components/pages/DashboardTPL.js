@@ -7,7 +7,7 @@ function DashboardTPL() {
     <>
          <Navbar></Navbar> 
          <div className='' id='dashboard-container'>
-         <BasicTabs></BasicTabs>
+
          </div>
     </>
   )
