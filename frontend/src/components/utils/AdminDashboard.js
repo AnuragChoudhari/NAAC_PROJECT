@@ -6,8 +6,12 @@ import "./AdminDashboard.css";
 function AdminDashboard() {
   return (
     <>
-        <Navbar></Navbar>
+      <div id='admin-dashboard-container'>
+      <Navbar></Navbar>
+        <div className='' id='admin-dashboard-tabs-container'>
         <BasicTabs></BasicTabs>
+        </div>
+      </div>
     </>
   )
 }

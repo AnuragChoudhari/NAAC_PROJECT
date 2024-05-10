@@ -16,6 +16,8 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import MenuIcon from '@mui/icons-material/Menu';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import "./TemporaryDrawer.css";
+import { SchoolOutlined, SchoolRounded } from '@mui/icons-material';
 
 const links = [
   { text: 'Home', link: '/home' },
@@ -36,26 +38,28 @@ export default function TemporaryDrawer() {
   const renderIconBasedOnText = (text) => {
     // Check text and return corresponding icon
     if (text === "Home") {
-      return <HomeIcon />;
+      return <HomeIcon style={{color: 'white'}}/>;
     } else if (text === "Dashboard") {
-      return <DashboardIcon />;
+      return <DashboardIcon  style={{color: 'white'}}/>;
     } else if (text === "Reports") {
-      return <AssessmentIcon />;
+      return <AssessmentIcon  style={{color: 'white'}}/>;
+    }else if (text === "College Details") {
+      return <SchoolRounded style={{color: 'white'}}/>;
     }
     else if (text === "Admin Panel") {
-      return <AdminPanelSettingsIcon></AdminPanelSettingsIcon>;
+      return <AdminPanelSettingsIcon style={{color: 'white'}}></AdminPanelSettingsIcon>;
     }else if (text == "Criteria Data Filling"){
-      return <EditNoteIcon></EditNoteIcon>
+      return <EditNoteIcon style={{color: 'white'}}></EditNoteIcon>
     }
     // Add more conditions as needed
     else {
-      return <HomeIcon/>;
+      return <HomeIcon style={{color: 'white'}}/>;
     }
   };
   
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 250 }} id="navbar-drawer" role="presentation" onClick={toggleDrawer(false)}>
       <List>
         {links.map(({ text, link }, index) => (
           <ListItem key={text} disablePadding>
@@ -69,13 +73,13 @@ export default function TemporaryDrawer() {
           </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider style={{borderColor: 'white'}}/>
       <List>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? <InboxIcon style={{color: 'white'}}/> : <MailIcon style={{color: 'white'}}/>}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -86,7 +90,7 @@ export default function TemporaryDrawer() {
   );
 
   return (
-    <div>
+    <div id="navbar-drawer-container">
       <Button variant="contained" onClick={toggleDrawer(true)}><MenuIcon></MenuIcon></Button>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}

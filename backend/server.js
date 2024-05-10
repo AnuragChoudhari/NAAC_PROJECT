@@ -6,6 +6,8 @@ const mysql = require("mysql");
 const cors = require("cors");
 const multer = require("multer");
 
+const randomstring = require('randomstring');
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const facultyId = req.body.faculty_id;
@@ -73,26 +75,34 @@ app.get("/getDepartmentsList", (req, res) => {
   });
 });
 
+
 app.post("/uploadData/qnm1_1_1", upload.array("files"), (req, res) => {
-  const { faculty_id, m_desc, m_files } = req.body;
+  const { faculty_id, m_desc } = req.body;
+  const m_files = req.files.map(file => file.filename);
 
   const sql =
     "INSERT INTO qnm1_1_1 (m_desc, m_files, faculty_id) VALUES (?,?,?)";
-  connection.query(sql, [m_desc, m_files, faculty_id], (err, result) => {
+  connection.query(sql, [m_desc, JSON.stringify(m_files), faculty_id], (err, result) => {
     if (err) {
-      console.error("Error retriving the data: ", err);
-      res.status(500).send("Error retriving the data");
+      console.error("Error inserting the data: ", err);
+      return res.status(500).send("Error inserting the data");
+    }
+    
+    if (result && result.affectedRows !== 0) {
+      res.json({
+        data: result,
+      });
     } else {
-      if (result.length != 0) {
-        res.json({
-          data: result,
-        });
-      } else {
-        res.status(404).send("Data does not exist");
-      }
+      res.status(404).send("Data does not exist");
     }
   });
 });
+
+
+
+
+
+
 
 app.post("/getUploadDetails/${id}", (req, res) => {});
 

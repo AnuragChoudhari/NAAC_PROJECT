@@ -26,6 +26,7 @@ import DashboardTPL from "./components/pages/DashboardTPL";
 import AdminDashboard from "./components/utils/AdminDashboard";
 import DefaultCriteria from "./components/pages/DefaultCriteria";
 import NaacHome from "./components/pages/NaacHome";
+import EditProfile from "./components/utils/EditProfile";
 
 
 function App() {
@@ -47,6 +48,10 @@ function App() {
                 <Route
                 path="/home"
                 element={<HomePage></HomePage>}
+              ></Route>
+                  <Route
+                path="/edit-profile"
+                element={<EditProfile></EditProfile>}
               ></Route>
 
                  <Route

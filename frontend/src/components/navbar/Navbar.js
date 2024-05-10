@@ -103,10 +103,10 @@ function Navbar() {
           <BasicPopover notificationCount={notificationCount}>
           
           </BasicPopover>
-          <h3>
+          <a id="user-profile" href="/edit-profile">
             <i className="ui user icon"></i>
             {sessionName}
-          </h3>
+          </a>
           <Button
             id="logout-button"
             variant="contained"

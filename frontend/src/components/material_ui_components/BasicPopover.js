@@ -70,7 +70,7 @@ export default function BasicPopover(props) {
       <Button aria-describedby={id} onClick={handleClick}>
       <Badge badgeContent={props.notificationCount} color="primary">
              
-             <Mail color="action"></Mail>
+             <Mail style={{color: 'white'}} id="mail-icon"></Mail>
         </Badge>
       </Button>
       <Popover

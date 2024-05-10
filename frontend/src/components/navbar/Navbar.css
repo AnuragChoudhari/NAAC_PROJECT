@@ -7,6 +7,18 @@
    
 }
 
+#menu-box{
+
+    width: 100%;
+    background-color: #00274b;
+    margin: 0;
+    box-shadow: 0px 0px 10px 0px black;
+}
+
+#menu-icon{
+    color: wheat;
+}
+
 #notifications{
     color: red;
     cursor: pointer;
@@ -36,6 +48,7 @@
 
 #right-side-menu-box{
     margin-left: auto;
+    
 }
 
 #right-side-menu-box h3{
@@ -59,6 +72,20 @@
 } */
 
 #college-details{
-
+    color: #ffffff;
     margin: 10px !important;
+    font-weight: 100;
+}
+
+#user-profile{
+    transition: .1s ease-in-out;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-right: 20px;
+    color: #ffffff;
+}   
+
+#user-profile:hover{
+
+
 }
